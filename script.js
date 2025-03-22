@@ -1,25 +1,16 @@
-let currentIndex = 0;
-const slides = document.querySelectorAll('.slide'); 
-const totalSlides = slides.length; 
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slides img');
 
-function showSlide(index) {
- 
-  if (index >= totalSlides) {
-    currentIndex = 0; 
-  } else if (index < 0) {
-    currentIndex = totalSlides - 1; 
-  } else {
-    currentIndex = index;
-  }
+function showSlide() {
+    
+    slideIndex++;
+    
+    if (slideIndex >= slides.length) {
+        slideIndex = 0;
+    }
 
-  const slider = document.querySelector('.slider');
-  const offset = -600 * currentIndex; 
-  slider.style.transform = `translateX(${offset}px)`;
+    const offset = -slideIndex * 100;
+    document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
 }
 
-setInterval(() => {
-  currentIndex++; 
-  showSlide(currentIndex); 
-}, 3000); 
-
-showSlide(currentIndex);
+setInterval(showSlide, 3000);
